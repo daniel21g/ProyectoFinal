@@ -14,60 +14,87 @@
                         </div>
 					@endif
 						<div class="col-md-7 mt-text animate-box" data-animate-effect="fadeInUp">
-							<span class="intro-text-small">Hecho por  <a href="" target="_blank">www.danielDEV.com</a></span>
+                        <span class="intro-text-small">Hecho por: <a href="/" target="_blank">Daniel Gonzalez</a></span>
 							<h1 class="cursive-font">PIZZERIA COPA</h1>	
 						</div>
-						<div class="col-md-4 col-md-push-1 animate-box" data-animate-effect="fadeInRight">
-						<!--	<div class="form-wrap">
-								<div class="tab">
-									
-									<div class="tab-content">
-										<div class="tab-content-inner active" data-content="signup">
-											<h3 class="cursive-font">Table Reservation</h3>
-											<form action="#">
-												<div class="row form-group">
-													<div class="col-md-12">
-														<label for="activities">Persons</label>
-														<select name="#" id="activities" class="form-control">
-															<option value="">Persons</option>
-															<option value="">1</option>
-															<option value="">2</option>
-															<option value="">3</option>
-															<option value="">4</option>
-															<option value="">5+</option>
-														</select>
-													</div>
-												</div>
-												<div class="row form-group">
-													<div class="col-md-12">
-														<label for="date-start">Date</label>
-														<input type="text" id="date" class="form-control">
-													</div>
-												</div>
-												<div class="row form-group">
-													<div class="col-md-12">
-														<label for="date-start">Time</label>
-														<input type="text" id="time" class="form-control">
-													</div>
-												</div>
+						
+						@guest
+					<div class="col-md-4 col-md-push-1 animate-box" data-animate-effect="fadeInRight">
+						<div class="form-wrap">
+                                        <div class="tab">
+                                            <ul class="tab-menu">
+                                                <li class="active gtco-first"><a href="#" data-tab="signup">Sign up</a></li>
+                                                <li class="gtco-second"><a href="#" data-tab="login">Login</a></li>
+                                            </ul>
+                                            <div class="tab-content">
+                                                <div class="tab-content-inner active" data-content="signup">
+                                                    <form action="{{ route('register') }}" method="post">
+                                                        {!! csrf_field() !!}
+                                                        <div class="row form-group">
+                                                            <div class="col-md-12">
+                                                                <label for="name">Name</label>
+                                                                <input type="text" class="form-control" id="name" name="name">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row form-group">
+                                                            <div class="col-md-12">
+                                                                <label for="name">Email</label>
+                                                                <input type="email" class="form-control" id="email" name="email">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row form-group">
+                                                            <div class="col-md-12">
+                                                                <label for="password">Password</label>
+                                                                <input type="password" class="form-control" id="password" name="password">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row form-group">
+                                                            <div class="col-md-12">
+                                                                <label for="password2">Repeat Password</label>
+                                                                <input type="password" class="form-control" id="password2" name="password_confirmation">
+                                                            </div>
+                                                        </div>
 
-												<div class="row form-group">
-													<div class="col-md-12">
-														<input type="submit" class="btn btn-primary btn-block" value="Reserve Now">
-													</div>
-												</div>
-											</form>	
-										</div>
+                                                        <div class="row form-group">
+                                                            <div class="col-md-12">
+                                                                <input type="submit" class="btn btn-primary" value="Sign up">
+                                                            </div>
+                                                        </div>
+                                                    </form>	
+                                                </div>
 
-										
-									</div>  
-								</div>
-							</div> -->
+                                                <div class="tab-content-inner" data-content="login">
+                                                    <form action="{{ route('login') }}" method="post">
+                                                        {!! csrf_field() !!}
+                                                        <div class="row form-group">
+                                                            <div class="col-md-12">
+                                                                <label for="username">Email</label>
+                                                                <input type="email" class="form-control" id="email" name="email">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row form-group">
+                                                            <div class="col-md-12">
+                                                                <label for="password">Password</label>
+                                                                <input type="password" class="form-control" id="password" name="password">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row form-group">
+                                                            <div class="col-md-12">
+                                                                <input type="submit" class="btn btn-primary" value="Login">
+                                                            </div>
+                                                        </div>
+                                                    </form>	
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
 						</div>
+						
 					</div>
-							
-					
-				</div>
+						@endguest
+					</div>
 			</div>
 		</div>
 	</header>

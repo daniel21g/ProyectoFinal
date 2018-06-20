@@ -16,7 +16,6 @@ class ProductosController extends Controller
     public function index()
     {
         $productos = Productos::all();
-        //dd($servicios);
         return view('productos', compact('productos'));
     }
 
@@ -38,15 +37,15 @@ class ProductosController extends Controller
      */
     public function store(Request $request)
     {
-      /*  $file_name = "sinimagen.png";
+        $file_name = "sinimagen.png";
         if($request->file('fileimage')){
             $img = $request->file('fileimage');
             $file_name = $img->getClientOriginalName();
-            Storage::disk('gallery')->put(
+            Storage::disk('images')->put(
                 $file_name,
                 file_get_contents($img->getRealPath())
             );
-        }*/
+        }
 
         Productos::create([
             'image' => $request->file('fileimage')->getClientOriginalName(),
@@ -56,7 +55,7 @@ class ProductosController extends Controller
         ]);
        // dd($request->all());
         //return 'creado';
-        return redirect()->route('productos')->with('status', "Producto Creado");  
+        return redirect()->route('productos')->with('creado', "Producto Creado");  
        // return 'guardado';
    
 
@@ -103,6 +102,16 @@ class ProductosController extends Controller
         $producto_nuevo->descripcion= $request->input('descripcion');
         $producto_nuevo->costo = $request->input('costo');
         if($producto_nuevo->save()){
+            $file_name = "sinimagen.png";
+            if($request->file('fileimage')){
+                $img = $request->file('fileimage');
+                $file_name = $img->getClientOriginalName();
+                Storage::disk('images')->put(
+                    $file_name,
+                    file_get_contents($img->getRealPath())
+                );
+            }
+
             return redirect()->route('productos')->with('guardar', "Producto: " . $producto_nuevo->titulo . " ha sido guardado");
         }else{
             return redirect()->route('productos')->with('error', "Hubo un error guardadndo el producto" .$producto_nuevo->titulo ); 

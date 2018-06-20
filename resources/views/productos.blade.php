@@ -5,13 +5,19 @@
 		<div class="overlay"></div>
 		<div class="gtco-container">
 			<div class="row">
+            @if (session('status'))
+                        <div class="alert alert-success">
+                            {{ session('status') }}
+                        </div>
+            @endif
 				<div class="col-md-12 col-md-offset-0 text-center">
 					
 
 					<div class="row row-mt-15em">
 						<div class="col-md-12 mt-text animate-box" data-animate-effect="fadeInUp">
-							<span class="intro-text-small">Hand-crafted by <a href="http://gettemplates.co" target="_blank">GetTemplates.co</a></span>
-							<h1 class="cursive-font">Prueba nuestro menu!</h1>	
+						
+                            <span class="intro-text-small">Hecho por: <a href="/" target="_blank">Daniel González</a></span>
+                            <h1 class="cursive-font">Prueba nuestro menu!</h1>	
 						</div>
 						
 					</div>
@@ -27,10 +33,11 @@
 	<div class="gtco-section">
 		<div class="gtco-container">
         <div class="row">
-              @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
+            
+            @if (session('creado'))
+                <div class="alert alert-success">
+                    {{ session('creado') }}
+                </div>
             @endif
             @if (session('guardar'))
                 <div class="alert alert-info">
@@ -94,29 +101,38 @@
                 <div class="car-deck">
                 @foreach($productos as $producto)
 				<div class="col-lg-4 col-md-4 col-sm-6">
-                        <div class="card h-100">
+                        <div class="card ">
                             <div class="card-body"> 
                                     <img src="{{ asset('images/' . $producto->image) }}" alt="Image" class="card-img-top img-responsive">
                                     <h2 class="card-title">{{$producto->titulo}}</h2>
                                     <p class="card-text">{{$producto->descripcion}}</p>
                                     <p><span class="card-text price cursive-font" style="font-size:25pt;">Bs{{$producto->costo}}</span></p>
+                                    </div>
+                                    @role('admin')
                                 <div class="card-footer"> 
-                                    <form action="{{route('productos.edit',$producto)}}" method="GET">
+                                 <ul class="list-inline">
+                                <li>
+                                <form class="list-inline-item" action="{{route('productos.edit',$producto)}}" method="GET">
                                 @csrf
                                     <button type="submit"  class="btn btn-success" >Modificar</button>
                                 </form>
-                                    <form action="{{route('productos.destroy',$producto)}}" method="POST">
+                                </li>
+                                <li>
+                                <form class="list-inline-item" action="{{route('productos.destroy',$producto)}}" method="POST">
                                 @csrf
                                      <input type="hidden" name="_method" value="DELETE">
                                      <button type="submit"  class="btn btn-danger" >Eliminar</button>
                                 </form>
+                                </li>
+                                </ul>
                                 </div>
-                            </div>      
+                                     @endrole
                         </div>                 
                 </div>
 				@endforeach
 				</div>
-				</div>
+                </div>
+                @role('admin')
             <div class="row">
 				<div class="col-12 text-center">
                     
@@ -126,7 +142,7 @@
                     
                 </div>
               </div>
-             
+             @endrole
             
 		
 	</div>

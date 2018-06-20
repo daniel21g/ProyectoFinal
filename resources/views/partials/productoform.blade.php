@@ -11,7 +11,7 @@
     <input type="text" name="descripcion" id="description" value="" class="form-control">
 </div>
 <div class="form-group">
-    <label for="description">Costo</label>
+    <label for="costo">Costo</label>
    <!-- <input type="text" name="costo" id="costo" value="" class="form-control"> -->
     <input type="number" name="costo" id="costo" min="1" step="any" class="form-control" />
 </div>

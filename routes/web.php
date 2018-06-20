@@ -27,6 +27,8 @@ Route::get('/productos', 'ProductosController@destroy')->name('delete');
 Route::get('/productos', 'ProductosController@edit')->name('editar_producto');
 Route::get('/productos', 'ProductosController@create')->name('mostrar_formulario');
 Route::post('/productos', 'ProductosController@store')->name('crear_producto');
+Route::post('/reservas', 'ReservasController@store')->name('crear_reserva');
+Route::post('email', 'FrontendController@send')->name('send.email');
 
 
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Reservas;
 use Illuminate\Http\Request;
+use Auth;
+use Illuminate\Support\Facades\Input;
 
 class ReservasController extends Controller
 {
@@ -35,7 +37,14 @@ class ReservasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+       Reservas::create([
+            'user_id' => Auth::user()->id, 
+            'personas_reserva' => $request->input('personas_reserva'),
+            'fecha_reserva' => $request->input('fecha_reserva'),
+            'hora_reserva' => $request->input('hora_reserva')
+        ]);
+       return redirect()->back()->with('reserva','reserva creada');
     }
 
     /**

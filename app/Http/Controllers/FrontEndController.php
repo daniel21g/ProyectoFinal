@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\MailContact;
 use Illuminate\Http\Request;
+use Mail;
+
 
 class FrontEndController extends Controller
 {
@@ -34,6 +37,17 @@ class FrontEndController extends Controller
     public function index()
     {
         //
+    }
+
+    public function send(Request $request){
+    /*Mail::send('emails.alert', ['data' => $request], function ($m) use ($request) {
+            $m->from($request->input("email"), $request->input("name"));
+            $m->to('ljavierrodriguez@gmail.com', 'Luis Rodriguez')->subject('Contacto desde Web');
+        });*/
+       // return 'enviando email';
+        Mail::to('dnlgnz21g@gmail.com', "Daniel G")->send(new MailContact($request));
+        
+        return redirect()->route('contacto')->with("enviado", "Email Enviado");
     }
 
     

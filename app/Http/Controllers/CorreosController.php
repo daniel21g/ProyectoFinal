@@ -41,7 +41,7 @@ class CorreosController extends Controller
         ]);
         //dd($request->input('email'));
 
-        return redirect()->route('home')->with('status', "Correo subscrito");  
+        return redirect()->back()->with('status', "Correo subscrito");  
        // return 'guardado';
     }
 
